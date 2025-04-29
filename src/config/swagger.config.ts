@@ -10,7 +10,7 @@ function swaggerDocs(app: Application, baseUrl: string) {
     "/docs",
     // @ts-ignore
     swaggerUi.serve,
-    swaggerUi.setup(yaml.load(path.join(__dirname, "../../", "docs/swagger.yaml")))
+    swaggerUi.setup(yaml.load(path.join(process.cwd(), "docs", "swagger.yaml")))
   );
 
   logger.info(`Documentation available at ${baseUrl}/docs`);

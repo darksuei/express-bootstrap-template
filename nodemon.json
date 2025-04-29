@@ -1,0 +1,6 @@
+{
+  "watch": ["src", ".env"],
+  "ext": "ts,json",
+  "exec": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/out.js && node dist/out.js"
+}
+
