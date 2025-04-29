@@ -4,16 +4,17 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint . --ext .ts",
     "clean": "rimraf dist",
     "build": "tsc",
     "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "start": "NODE_ENV=production npm run clean && tsc && node dist/index.js",
-    "entity:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm entity:create ./src/entity",
-    "test": "NODE_ENV=test jest",
     "typeorm": "npx typeorm-ts-node-commonjs --dataSource ./src/database/dataSource.ts",
+    "typeorm:entity:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm entity:create ./src/entity",
     "typeorm:migrate": "npm run typeorm -- migration:run",
     "typeorm:generate": "npm run typeorm -- migration:generate ./src/database/migrations/migration",
-    "typeorm:revert": "npm run typeorm -- migration:revert"
+    "typeorm:revert": "npm run typeorm -- migration:revert",
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -26,6 +27,7 @@
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.20",
     "typescript": "^5.4.4",
+    "typescript-eslint": "^8.31.1",
     "winston": "^3.13.0",
     "yamljs": "^0.3.0",
     "zod": "^3.24.1"

@@ -21,7 +21,7 @@ export class ApiError extends Error {
   }
 }
 
-export const errorConverter: ErrorRequestHandler = (err, req, res, next) => {
+export const errorConverter: ErrorRequestHandler = (err, _req, _res, next) => {
   let error = err;
   if (!(error instanceof ApiError)) {
     const statusCode = error.statusCode ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;
@@ -31,7 +31,7 @@ export const errorConverter: ErrorRequestHandler = (err, req, res, next) => {
   next(error);
 };
 
-export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   let { statusCode, message } = err;
   if (process.env.NODE_ENV === "production" && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;

@@ -24,7 +24,7 @@ configureEnvironment();
 export function readEnv(
   key: string,
   defaultValue?: string | number,
-  isNumeric: boolean = false
+  isNumeric = false
 ): string | number | undefined {
   const value = process.env[key];
   if (value) {
