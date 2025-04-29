@@ -3,12 +3,12 @@ import { DataSource } from "typeorm";
 import { devEnvironment, readEnv } from "../config/readEnv.config";
 import { SupportedDatabaseTypes } from "../utils/enums";
 
-const DB_HOST = readEnv("DB_HOST") as string;
-const DB_PORT = readEnv("DB_PORT", 5432, true) as number;
-const DB_USERNAME = readEnv("DB_USERNAME") as string;
-const DB_PASSWORD = readEnv("DB_PASSWORD") as string;
-const DB_DATABASE = readEnv("DB_DATABASE") as string;
-const DB_DATABASE_TYPE = readEnv("DB_DATABASE_TYPE") as string;
+const DB_HOST = readEnv("DB_HOST");
+const DB_PORT = readEnv("DB_PORT");
+const DB_USERNAME = readEnv("DB_USERNAME");
+const DB_PASSWORD = readEnv("DB_PASSWORD");
+const DB_DATABASE = readEnv("DB_DATABASE");
+const DB_DATABASE_TYPE = readEnv("DB_DATABASE_TYPE");
 
 export const AppDataSource = new DataSource({
   type: DB_DATABASE_TYPE as SupportedDatabaseTypes,

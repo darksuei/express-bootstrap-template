@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import path from "path";
+import { EnvSchema } from "../validations/schemas";
+import * as z from "zod";
 
 export function configureEnvironment(): void {
   if (process.env.NODE_ENV === "production") {
@@ -18,19 +20,16 @@ export function configureEnvironment(): void {
       override: true,
     });
   }
-}
-configureEnvironment();
 
-export function readEnv(
-  key: string,
-  defaultValue?: string | number,
-  isNumeric = false
-): string | number | undefined {
-  const value = process.env[key];
-  if (value) {
-    return isNumeric ? parseInt(value) : value;
-  }
-  return defaultValue;
+  // Parse environment variables..
+  EnvSchema.parse(process.env);
+}
+
+export function readEnv<K extends keyof z.infer<typeof EnvSchema>>(
+  key: K,
+  default_value?: z.infer<typeof EnvSchema>[K]
+): z.infer<typeof EnvSchema>[K] {
+  return (process.env[key] || default_value) as z.infer<typeof EnvSchema>[K];
 }
 
 export function stagingEnvironment() {
@@ -52,3 +51,5 @@ export function testEnvironment() {
 export function localEnvironment() {
   return process.env.NODE_ENV === "development";
 }
+
+configureEnvironment();

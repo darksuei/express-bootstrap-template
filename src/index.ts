@@ -4,7 +4,7 @@ import app from "./app";
 import setupServer from "./setup/setupServer";
 import { tryInitializeDatabase } from "./setup/setupServiceInitializers";
 
-const APP_HOST = readEnv("APP_HOST") as string;
-const APP_PORT = parseInt(readEnv("APP_PORT") as string);
+const APP_HOST = readEnv("APP_HOST");
+const APP_PORT = readEnv("APP_PORT");
 
 setupServer(app, APP_HOST, APP_PORT, tryInitializeDatabase);
