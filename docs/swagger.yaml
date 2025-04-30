@@ -1,11 +1,11 @@
 openapi: "3.0.0"
 info:
-  title: "Node Bootstrap API"
+  title: "Express Bootstrap API"
   version: "1.0.0"
   description: "API for managing authentication and user operations"
 tags:
-  - name: "user"
-    description: "Endpoints for user management"
+  - name: "auth"
+    description: "Endpoints for auth management"
 
 components:
   securitySchemes:
