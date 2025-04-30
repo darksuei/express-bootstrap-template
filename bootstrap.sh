@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Removing existing .git"
+rm -rf ./.git
 
 # Get application metadata
 read -p "Enter application name: " APP_NAME
@@ -30,13 +32,13 @@ EOF
 APP_NAME_MODIFIED=$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 sed -i "s/\"name\": \"[^\"]*\"/\"name\": \"$APP_NAME_MODIFIED\"/" package.json
 
-# Create log file
-echo "Creating log file.."
+# Create logs dir
+echo "Creating logs dir.."
 mkdir logs
 
 # Install deps
 echo "Installing dependencies.."
-yarn
+pnpm install
 
 # Create .env
 cp .env.example .env
